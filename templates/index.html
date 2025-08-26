@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Saldos públicos{% endblock %}
+{% block content %}
+<section class="card mb">
+  <div class="metrics">
+    <div class="metric">
+      <div class="label">Saldo total</div>
+      <div class="value">{{ total|fmt_int }}</div>
+    </div>
+    <div class="metric warn">
+      <div class="label">Saldo da Guilda</div>
+      <div class="value">{{ guild_cash|fmt_int }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="table-title">Jogador <span class="right">Saldo</span></div>
+  <ul class="list">
+    {% for r in balances %}
+      <li>
+        <a href="/player/{{ r['id'] }}" class="row">
+          <span class="name">{{ r['name'] }}</span>
+          <span class="num">{{ r['saldo']|fmt_int }}</span>
+        </a>
+      </li>
+    {% else %}
+      <li class="muted">Sem jogadores.</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

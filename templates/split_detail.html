@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Split #{{s['id']}}{% endblock %}
+{% block content %}
+<section class="card mb">
+  <div class="metrics">
+    <div class="metric">
+      <div class="label">Split</div>
+      <div class="value">#{{ s['id'] }}</div>
+    </div>
+    <div class="metric">
+      <div class="label">Puxado por</div>
+      <div class="value">{{ s['pulled_by'] or '-' }}</div>
+    </div>
+    <div class="metric">
+      <div class="label">Status</div>
+      <div class="value">
+        <span class="badge {{ 'ok' if s['status']=='Loot Pago' else ('warn' if s['status']=='Vendendo' else 'muted') }}">
+          {{ s['status'] }}
+        </span>
+      </div>
+    </div>
+    <div class="metric">
+      <div class="label">Aprovado</div>
+      <div class="value">{{ 'Sim' if s['approved'] else 'Não' }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="card mb">
+  <div class="table-title">Resumo</div>
+  <table class="kv">
+    <tr><td>Bruto</td><td class="num">{{ s['bruto']|fmt_int }}</td></tr>
+    <tr><td>Reparo</td><td class="num">{{ s['reparo']|fmt_int }}</td></tr>
+    <tr><td>Cobrar taxa?</td><td>{{ 'Sim' if s['cobrar_taxa'] else 'Não' }}</td></tr>
+    <tr><td>Taxa (%)</td><td class="num">{{ s['taxa_pct'] }}</td></tr>
+    <tr><td>Reparo paga</td><td>{{ s['reparo_payer'] }}</td></tr>
+    <tr><td>Observações</td><td>{{ s['note'] or '-' }}</td></tr>
+    <tr><td>Criado em</td><td>{{ (s['created_at'] or '')[:19].replace('T',' ') }}</td></tr>
+  </table>
+</section>
+
+<section class="card">
+  <div class="table-title">Lançamentos do Split</div>
+  <table class="table">
+    <thead><tr><th>Jogador</th><th>Tipo</th><th class="num">Valor</th><th>Categoria</th><th>Obs</th><th>Data</th></tr></thead>
+    <tbody>
+      {% for r in tx %}
+        <tr>
+          <td>{{ r['player_name'] }}</td>
+          <td>{{ r['ttype'] }}</td>
+          <td class="num">{{ r['amount']|fmt_int }}</td>
+          <td>{{ r['category'] or '' }}</td>
+          <td>{{ r['note'] or '' }}</td>
+          <td>{{ (r['created_at'] or '')[:19].replace('T',' ') }}</td>
+        </tr>
+      {% else %}
+        <tr><td colspan="6" class="muted">Sem lançamentos associados.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

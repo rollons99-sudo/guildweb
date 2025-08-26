@@ -1,0 +1,10 @@
+:root { --bg:#0f172a; --fg:#e2e8f0; --card:#172036; --muted:#94a3b8; --hl:#60a5fa;}
+*{box-sizing:border-box} body{margin:0;font:16px/1.45 system-ui,Segoe UI,Arial;background:var(--bg);color:var(--fg)}
+header{display:flex;align-items:baseline;gap:.6rem;padding:16px 20px;border-bottom:1px solid #1f2a44;background:#0b1220;position:sticky;top:0}
+h1{margin:0;font-size:20px} small{color:var(--muted)}
+.summary{display:flex;gap:2rem;padding:16px 20px;color:var(--muted)}
+table{width:calc(100% - 40px);margin:0 20px 20px;border-collapse:collapse;background:var(--card);border:1px solid #1f2a44;border-radius:12px;overflow:hidden}
+th,td{padding:10px 12px;border-bottom:1px solid #1f2a44}
+thead th{background:#111a2c;text-align:left;color:#cbd5e1}
+.num{text-align:right}
+tr.guild td{color:var(--hl);font-weight:600}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Jogadores{% endblock %}
+{% block content %}
+<section class="card">
+  <div class="table-title">Jogadores (clique para detalhes)</div>
+  <ul class="list">
+    {% for p in players %}
+      <li><a class="row" href="/player/{{p['id']}}"><span class="name">{{p['name']}}</span></a></li>
+    {% else %}
+      <li class="muted">Sem jogadores.</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

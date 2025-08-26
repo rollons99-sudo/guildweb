@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Splits públicos{% endblock %}
+{% block content %}
+<section class="card">
+  <div class="table-title">Splits (recente → antigo)</div>
+  <table class="table">
+    <thead><tr>
+      <th>ID</th><th>Data</th><th>Puxado por</th><th>Status</th>
+      <th class="num">Bruto</th><th class="num">Reparo</th><th class="num">Taxa %</th>
+      <th>Obs</th>
+    </tr></thead>
+    <tbody>
+    {% for s in splits %}
+      <tr>
+        <td><a href="/splits/{{s['id']}}">#{{s['id']}}</a></td>
+        <td>{{ (s['created_at'] or '')[:19].replace('T',' ') }}</td>
+        <td>{{ s['pulled_by'] or '-' }}</td>
+        <td>
+          <span class="badge {{ 'ok' if s['status']=='Loot Pago' else ('warn' if s['status']=='Vendendo' else 'muted') }}">
+            {{ s['status'] }}
+          </span>
+          {% if not s['approved'] %}<small class="muted"> (aguardando aprovação)</small>{% endif %}
+        </td>
+        <td class="num">{{ s['bruto']|fmt_int }}</td>
+        <td class="num">{{ s['reparo']|fmt_int }}</td>
+        <td class="num">{{ s['taxa_pct'] }}</td>
+        <td>{{ s['note'] or '' }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="8" class="muted">Sem splits.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

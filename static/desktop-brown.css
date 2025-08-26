@@ -1,0 +1,54 @@
+:root{
+  --bg:#2a1d13;        /* fundo marrom escuro */
+  --bg-2:#3a2a1d;      /* cartões */
+  --line:#4a3829;      /* linhas/bordas */
+  --text:#f3e9d7;      /* texto principal bege */
+  --muted:#c9b9a3;     /* texto secundário */
+  --ok:#43a047;        /* verde */
+  --warn:#e6a23c;      /* âmbar */
+  --accent:#c59a6a;    /* detalhes */
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--text);font:15px/1.45 "Segoe UI",system-ui,Arial}
+
+.topbar{position:sticky;top:0;z-index:10;display:flex;gap:16px;align-items:center;
+  padding:10px 16px;background:#20150e;border-bottom:1px solid var(--line)}
+.topbar .brand{font-weight:700}
+.topbar nav{display:flex;gap:12px}
+.topbar nav a{color:var(--muted);text-decoration:none;padding:6px 8px;border-radius:6px}
+.topbar nav a:hover{background:#2e1f15;color:var(--text)}
+.topbar .ver{margin-left:auto;color:var(--muted)}
+
+.container{max-width:1200px;margin:16px auto;padding:0 16px}
+.card{background:var(--bg-2);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.mb{margin-bottom:16px}
+
+.metrics{display:flex;flex-wrap:wrap;gap:12px}
+.metric{background:#2f2117;border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-width:200px}
+.metric .label{color:var(--muted);font-size:12px}
+.metric .value{font-size:20px;font-weight:700}
+.metric.ok .value{color:var(--ok)}
+.metric.warn .value{color:var(--warn)}
+
+.table-title{padding:6px 4px;color:var(--muted);border-bottom:1px solid var(--line);margin-bottom:6px;display:flex;justify-content:space-between}
+.list{list-style:none;margin:0;padding:0}
+.list li{border-bottom:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;padding:10px 8px;color:var(--text);text-decoration:none}
+.row:hover{background:#342519}
+.name{font-weight:600}
+.num{text-align:right;min-width:120px}
+
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:8px;border-bottom:1px solid var(--line)}
+.table thead th{background:#291d13;text-align:left}
+.kv{width:100%;border-collapse:collapse}
+.kv td{padding:8px;border-bottom:1px solid var(--line)}
+.kv .num{text-align:right}
+
+.badge{padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:#2f2117}
+.badge.ok{color:var(--ok);border-color:#395b39}
+.badge.warn{color:var(--warn);border-color:#6e511c}
+.badge.muted{color:var(--muted)}
+
+.muted{color:var(--muted)}

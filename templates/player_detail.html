@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{{ p['name'] }} — detalhes{% endblock %}
+{% block content %}
+<section class="card mb">
+  <div class="metrics">
+    <div class="metric">
+      <div class="label">Jogador</div>
+      <div class="value">{{ p['name'] }}</div>
+    </div>
+    <div class="metric ok">
+      <div class="label">Saldo</div>
+      <div class="value">{{ saldo|fmt_int }}</div>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="table-title">Participações recentes</div>
+  <table class="table">
+    <thead><tr><th>Data</th><th>Split</th><th>Tipo</th><th class="num">Valor</th><th>Obs</th></tr></thead>
+    <tbody>
+      {% for r in parts %}
+        <tr>
+          <td>{{ (r['created_at'] or '')[:19].replace('T',' ') }}</td>
+          <td>
+            {% if r['split_id'] %}
+              <a href="/splits/{{r['split_id']}}">#{{ r['split_id'] }}</a>
+              <small class="muted">({{ r['status'] or '?' }})</small>
+            {% else %}
+              —
+            {% endif %}
+          </td>
+          <td>{{ r['ttype'] }}</td>
+          <td class="num">{{ r['amount']|fmt_int }}</td>
+          <td>{{ r['note'] or '' }}</td>
+        </tr>
+      {% else %}
+        <tr><td colspan="5" class="muted">Sem registros.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

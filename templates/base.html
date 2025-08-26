@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Guilda{% endblock %}</title>
+  <link rel="stylesheet" href="/static/desktop-brown.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🛡️ Split Cesta Básica</div>
+    <nav>
+      <a href="/">Saldos</a>
+      <a href="/splits">Splits</a>
+    </nav>
+    <small class="ver">{{ version }}</small>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
